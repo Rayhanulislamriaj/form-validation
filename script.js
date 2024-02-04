@@ -1,4 +1,4 @@
-var nameError = document.getElementById('name-error');
+let nameError = document.getElementById('name-error');
 let phoneError = document.getElementById('phone-error');
 let emailError = document.getElementById('email-error');
 let messageError = document.getElementById('message-error');
@@ -50,4 +50,26 @@ function validateEmail() {
     }
     emailError.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
     return true;
+}
+function validateMessage() {
+    var message = document.getElementById('contact-message').value;
+    var required = 30;
+    var left = required - message.length;
+
+    if(left >  0) {
+        messageError.innerHTML = left + ' more characters required!';
+        return false;
+    }
+    messageError.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+    return true;
+}
+function validateForm() {
+    if(!validateName() || !validatePhone() || !validateEmail() || !validateMessage()) {
+        submitError.style.display = 'block';
+        submitError.innerHTML = 'Please fix error to Submit!';
+        setTimeout(function() {
+            submitError.style.display = 'none';
+        }, 3000);
+        return false;
+    }
 }
